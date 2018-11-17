@@ -13,3 +13,13 @@ jobs:
 
      # deploy the image
      - run: docker push simonmassey/ocd-tools:$CIRCLE_SHA1
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - deploy:
+          filters:
+            tags:
+              only: /^v.*/
+            branches:
+              ignore: /.*/
