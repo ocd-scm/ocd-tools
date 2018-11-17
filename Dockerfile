@@ -56,6 +56,10 @@ RUN  cd /tmp && curl -s https://storage.googleapis.com/kubernetes-helm/helm-v2.9
 # webhook
 RUN cd /tmp && curl -L https://github.com/adnanh/webhook/releases/download/2.6.9/webhook-linux-amd64.tar.gz | tar xz && mv ./webhook-linux-amd64/webhook /usr/local/bin && rm -rf /tmp/webhook-linux-amd64
 
+COPY ./bin/* /usr/local/bin
+
+COPY hooks.json /opt/app-root/src
+
 USER 1001
 
 # Set the default CMD to print the usage of the language image
