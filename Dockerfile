@@ -10,6 +10,7 @@
 #  - git-secret 0.2.4 http://git-secret.io
 #  - gpg 2.2.9 https://www.gnupg.org)
 #  - helm 2.9.0 
+#  - webhook 2.6.9
 
 FROM openshift/base-centos7
 
@@ -49,7 +50,11 @@ RUN /usr/local/bin/install-gnupg22.sh
 
 RUN rm -rf /opt/app-root/src/.gnupg && chown -R 1001 /opt/app-root/src
 
+# helm
 RUN  cd /tmp && curl -s https://storage.googleapis.com/kubernetes-helm/helm-v2.9.0-linux-amd64.tar.gz | tar xz && mv /tmp/linux-amd64/helm /usr/local/bin && rm -rf /tmp/linux-amd64
+
+# webhook
+RUN cd /tmp && curl -L https://github.com/adnanh/webhook/releases/download/2.6.9/webhook-linux-amd64.tar.gz | tar xz && mv ./webhook-linux-amd64/webhook /usr/local/bin && rm -rf /tmp/webhook-linux-amd64
 
 USER 1001
 
