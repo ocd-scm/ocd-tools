@@ -1,6 +1,6 @@
 version: 2
 jobs:
- build:
+ release:
    machine: true
    steps:
      - checkout
@@ -15,7 +15,7 @@ jobs:
      - run: docker push simonmassey/ocd-tools:$CIRCLE_TAG
 workflows:
   version: 2
-  build-and-deploy:
+  release:
     jobs:
       - deploy:
           filters:
