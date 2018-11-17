@@ -15,9 +15,9 @@ jobs:
      - run: docker push simonmassey/ocd-tools:$CIRCLE_TAG
 workflows:
   version: 2
-  release:
+  build-and-deploy:
     jobs:
-      - deploy:
+      - release:
           filters:
             tags:
               only: /^v.*/
