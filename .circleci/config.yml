@@ -9,10 +9,10 @@ jobs:
      - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
 
      # build the application image
-     - run: docker build -t simonmassey/ocd-tools:$CIRCLE_SHA1 .
+     - run: docker build -t simonmassey/ocd-tools:$CIRCLE_TAG .
 
      # deploy the image
-     - run: docker push simonmassey/ocd-tools:$CIRCLE_SHA1
+     - run: docker push simonmassey/ocd-tools:$CIRCLE_TAG
 workflows:
   version: 2
   build-and-deploy:
