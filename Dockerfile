@@ -60,6 +60,9 @@ COPY ./bin/* /usr/local/bin
 
 COPY hooks.json /opt/app-root/src
 
+# needed to lookup random usr in /etc/password for git push https://docs.openshift.com/enterprise/3.1/creating_images/guidelines.html
+RUN yum -y install nss_wrapper gettext && yum clean all -y && rm -rf /var/cache/yum
+
 USER 1001
 
 # Set the default CMD to print the usage of the language image
