@@ -50,18 +50,19 @@ RUN /usr/local/bin/install-gnupg22.sh
 
 RUN rm -rf /opt/app-root/src/.gnupg && chown -R 1001 /opt/app-root/src
 
-# helm
-RUN  cd /tmp && curl -s https://storage.googleapis.com/kubernetes-helm/helm-v2.9.0-linux-amd64.tar.gz | tar xz && mv /tmp/linux-amd64/helm /usr/local/bin && rm -rf /tmp/linux-amd64
-
 # webhook
 RUN cd /tmp && curl -L https://github.com/adnanh/webhook/releases/download/2.6.9/webhook-linux-amd64.tar.gz | tar xz && mv ./webhook-linux-amd64/webhook /usr/local/bin && rm -rf /tmp/webhook-linux-amd64
 
-COPY ./bin/* /usr/local/bin
-
-COPY hooks.json /opt/app-root/src
-
 # needed to lookup random usr in /etc/password for git push https://docs.openshift.com/enterprise/3.1/creating_images/guidelines.html
 RUN yum -y install nss_wrapper gettext && yum clean all -y && rm -rf /var/cache/yum
+
+# helm 2.8.1
+RUN  cd /tmp && curl -s https://storage.googleapis.com/kubernetes-helm/helm-v2.8.1-linux-amd64.tar.gz | tar xz && mv /tmp/linux-amd64/helm /usr/local/bin/helm-2.8.1 && rm -rf /tmp/linux-amd64
+
+# helm 2.9.0
+RUN  cd /tmp && curl -s https://storage.googleapis.com/kubernetes-helm/helm-v2.9.0-linux-amd64.tar.gz | tar xz && mv /tmp/linux-amd64/helm /usr/local/bin/helm-2.9.0 && rm -rf /tmp/linux-amd64
+
+COPY ./bin/* /usr/local/bin/
 
 USER 1001
 

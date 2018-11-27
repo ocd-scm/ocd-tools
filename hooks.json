@@ -1,7 +1,0 @@
-[
-  {
-    "id": "hello",
-    "execute-command": "/usr/local/bin/hello.sh",
-    "command-working-directory": "/tmp"
-  }
-]
