@@ -54,7 +54,7 @@ RUN cd /tmp && curl -L https://github.com/adnanh/webhook/releases/download/2.6.9
 RUN  cd /tmp && curl -s https://storage.googleapis.com/kubernetes-helm/helm-v2.11.0-linux-amd64.tar.gz | tar xz && mv /tmp/linux-amd64/helm /usr/local/bin/helm && rm -rf /tmp/linux-amd64
 
 # helmfile 0.40.3
-RUN cd /tmp && wget https://github.com/roboll/helmfile/releases/download/v0.40.3/helmfile_linux_amd64 && mv helmfile_linux_amd64 /usr/local/bin/helmfile
+RUN cd /tmp && wget https://github.com/roboll/helmfile/releases/download/v0.40.3/helmfile_linux_amd64 && mv helmfile_linux_amd64 /usr/local/bin/helmfile && chmod +x /usr/local/bin/helmfile
 
 # helmfile dependencies
 RUN mkdir -p "$(helm home)/plugins" && \
