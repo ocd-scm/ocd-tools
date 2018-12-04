@@ -67,7 +67,7 @@ RUN cd /tmp && \
     tar zxf - && \
     mv $(find . -name oc) /usr/local/bin
 
-#COPY ./bin/* /usr/local/bin/
+RUN chgrp -R 0 /opt/app-root/src/.helm && chmod -R g+w /opt/app-root/src/.helm
 
 USER 1001
 
