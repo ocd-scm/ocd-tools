@@ -1,6 +1,0 @@
-#!/bin/bash
-HELM=/usr/local/bin/helm-2.9.0
-if [ "$HELM_VERSION" == "2.8.1" ]; then
-    HELM=/usr/local/bin/helm-2.8.1
-fi
-exec $HELM "$@"

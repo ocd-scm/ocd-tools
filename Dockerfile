@@ -56,13 +56,18 @@ RUN cd /tmp && curl -L https://github.com/adnanh/webhook/releases/download/2.6.9
 # needed to lookup random usr in /etc/password for git push https://docs.openshift.com/enterprise/3.1/creating_images/guidelines.html
 RUN yum -y install nss_wrapper gettext && yum clean all -y && rm -rf /var/cache/yum
 
-# helm 2.8.1
-RUN  cd /tmp && curl -s https://storage.googleapis.com/kubernetes-helm/helm-v2.8.1-linux-amd64.tar.gz | tar xz && mv /tmp/linux-amd64/helm /usr/local/bin/helm-2.8.1 && rm -rf /tmp/linux-amd64
+# helm 2.11.0
+RUN  cd /tmp && curl -s https://storage.googleapis.com/kubernetes-helm/helm-v2.11.0-linux-amd64.tar.gz | tar xz && mv /tmp/linux-amd64/helm /usr/local/bin/helm && rm -rf /tmp/linux-amd64
 
-# helm 2.9.0
-RUN  cd /tmp && curl -s https://storage.googleapis.com/kubernetes-helm/helm-v2.9.0-linux-amd64.tar.gz | tar xz && mv /tmp/linux-amd64/helm /usr/local/bin/helm-2.9.0 && rm -rf /tmp/linux-amd64
+# helmfile 0.40.3
+RUN cd /tmp && wget https://github.com/roboll/helmfile/releases/download/v0.40.3/helmfile_linux_amd64 && mv helmfile_linux_amd64 /usr/local/bin/helmfile
 
-COPY ./bin/* /usr/local/bin/
+# helmfile dependencies
+RUN mkdir -p "$(helm home)/plugins" && \
+    helm plugin install https://github.com/databus23/helm-diff && \
+    helm plugin install https://github.com/futuresimple/helm-secrets
+
+#COPY ./bin/* /usr/local/bin/
 
 USER 1001
 
