@@ -69,6 +69,8 @@ RUN cd /tmp && \
 
 RUN chgrp -R 0 /opt/app-root/src/.helm && chmod -R g+w /opt/app-root/src/.helm
 
+RUN mkdir -p /opt/app-root/src/.gnupg && chown -R 1001 /opt/app-root/src/.gnupg && chmod -R go-rwx,u+w /opt/app-root/src/.gnupg
+
 USER 1001
 
 # Set the default CMD to print the usage of the language image
