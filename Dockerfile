@@ -6,7 +6,7 @@
 #  - yq https://github.com/kislyuk/yq
 # The following packages are downloaded and installed using an explict version number:
 #  - hub 2.4.0 https://hub.github.com 
-#  - oc 3.9.0 https://docs.openshift.org/latest/cli_reference/index.html
+#  - oc 3.11.0 https://docs.openshift.org/latest/cli_reference/index.html
 #  - git-secret 0.2.4 http://git-secret.io
 #  - gpg 2.2.9 https://www.gnupg.org)
 #  - helm 2.9.0 
